@@ -52,6 +52,7 @@ alias l='ls -CF'
 alias chromes='sh $HOME/.config/i3/load_calendars.sh'
 alias nvimc='nvim $HOME/.config/nvim'
 alias vim='nvim'
+alias ide='~/Workspace/soyuz/scripts/tmux_session.sh'
 
 # add Pulumi to the PATH
 export PATH=$PATH:$HOME/.pulumi/bin
