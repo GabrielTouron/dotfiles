@@ -1,0 +1,20 @@
+{
+    "border": "normal",
+    "current_border_width": 2,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 1031,
+       "width": 1910,
+       "x": 1920,
+       "y": 0
+    },
+    "marks": [],
+    "percent": 1,
+    "swallows": [
+       {
+	"class": "^jetbrains\\-datagrip$"
+       }
+    ],
+    "type": "con"
+}
+
