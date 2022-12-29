@@ -14,4 +14,4 @@ truncation_length = 8
 truncation_symbol = '…/'
 
 [cmd_duration]
-format = 'underwent [$duration](bold yellow)'
+format = '[$duration](bold yellow)'
