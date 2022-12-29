@@ -1,0 +1,33 @@
+{
+   "background": {
+      "scripts": [ "background.js" ]
+   },
+   "browser_action": {
+      "default_icon": {
+         "128": "icons/icon-grey-128.png",
+         "16": "icons/icon-grey-16.png",
+         "48": "icons/icon-grey-48.png"
+      },
+      "default_popup": "popup/popup.html",
+      "default_title": "Vue Telescope"
+   },
+   "content_scripts": [ {
+      "js": [ "content.js" ],
+      "matches": [ "\u003Call_urls>" ],
+      "run_at": "document_start"
+   } ],
+   "content_security_policy": "script-src 'self'; object-src 'self'",
+   "description": "Discover Vue.js Websites",
+   "icons": {
+      "128": "icons/icon-128.png",
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhm8+yAzkhtE+WeY3fQJaJNLnsAmBS9IZZXNovTPuzo3t9KOr9/xFVnG5tH7g96gKMnLSYWoxQUd6ML60mBfZDglxrBqBjv9oxLc+Hf7uZ98fLd/tfezthveh1VzlELh4fPpXf1//2Bb2PydZWnsbJyTkchmToz30ro9MgtANDhl1hnWK/EX0UNkWPlI++FFC8cOo+R/ct9Q4GKvhnjbrqGo+jeACUNtm3h1d9SZ1CCPk/T6yypHhufcmQ+r7qQN8WfTZEtjUrbNTBbaflvIlKoqVEbwimuIHFcGUOOhLepyHK4z/ZavaqG7xbXw+rpy05UcO+7v49MZyJFBZ7gBxRwIDAQAB",
+   "manifest_version": 2,
+   "name": "Vue Telescope",
+   "permissions": [ "https://*/*" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "1.6.1",
+   "web_accessible_resources": [ "injected.js" ]
+}
