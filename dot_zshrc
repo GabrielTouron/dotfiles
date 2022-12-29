@@ -1,14 +1,7 @@
-# Set up the prompt
-# Test chezmoi
-
-autoload -Uz promptinit
-promptinit
-prompt adam1
-
 setopt histignorealldups sharehistory
 
 # Use emacs keybindings even if our EDITOR is set to vi
-bindkey -e
+bindkey -v
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_hitory:
 HISTSIZE=1000
@@ -18,7 +11,7 @@ HISTFILE=~/.zsh_history
 # Use modern completion system
 autoload -Uz compinit
 compinit
-
+#
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
@@ -40,6 +33,7 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # Custom
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-z/zsh-z.plugin.zsh
+source ~/.zsh/zsh-syntax-highlighting.git/zsh-syntax-highlighting.zsh
 
 zstyle ':completion:*' menu select
 
@@ -49,21 +43,14 @@ zstyle ':completion:*' menu select
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias chromes='sh $HOME/.config/i3/load_calendars.sh'
-alias nvimc='nvim $HOME/.config/nvim'
 alias vim='nvim'
 alias ide='~/Workspace/soyuz/scripts/tmux_session.sh'
 
 # add Pulumi to the PATH
 export PATH=$PATH:$HOME/.pulumi/bin
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 CUSTOM_NVIM_PATH=/usr/local/bin/nvim.appimage
-export PATH=$PATH:$HOME/.local/bin/
-
-
 export PROMPT_COMMAND="history -a; history -n"
 export EDITOR="nvim"	
+
+eval "$(starship init zsh)"
+
