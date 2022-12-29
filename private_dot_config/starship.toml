@@ -1,0 +1,17 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true 
+
+[character] 
+success_symbol = '[➜](bold purple)' 
+
+[package]
+disabled = true
+
+[directory]
+truncation_length = 8
+truncation_symbol = '…/'
+
+[cmd_duration]
+format = 'underwent [$duration](bold yellow)'
