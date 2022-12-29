@@ -15,3 +15,9 @@ truncation_symbol = '…/'
 
 [cmd_duration]
 format = '[$duration](bold yellow)'
+
+[git_branch]
+symbol = ''
+truncation_length = 4
+truncation_symbol = ''
+
