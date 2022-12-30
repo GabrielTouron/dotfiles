@@ -44,11 +44,12 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias vim='nvim'
+alias start='~/.config/i3/layout.sh'
 alias ide='~/Workspace/soyuz/scripts/tmux_session.sh'
 
 # add Pulumi to the PATH
 export PATH=$PATH:$HOME/.pulumi/bin
-CUSTOM_NVIM_PATH=/usr/local/bin/nvim.appimage
+export PATH=$PATH:/usr/local/bin
 export PROMPT_COMMAND="history -a; history -n"
 export EDITOR="nvim"	
 
