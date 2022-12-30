@@ -1,0 +1,7 @@
+[user]
+	name = Gabriel Touron
+	email = gtcode@pm.me
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main
