@@ -46,6 +46,8 @@ alias l='ls -CF'
 alias vim='nvim'
 alias start='~/.config/i3/layout.sh'
 alias ide='~/Workspace/soyuz/scripts/tmux_session.sh'
+alias bup='sudo brightnessctl set +15%' 
+alias bdown='sudo brightnessctl set 15%-' 
 
 # add Pulumi to the PATH
 export PATH=$PATH:$HOME/.pulumi/bin
