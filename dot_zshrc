@@ -44,8 +44,8 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias vim='nvim'
-alias start='~/.config/i3/layout.sh'
-alias ide='~/Workspace/soyuz/scripts/tmux_session.sh'
+alias start=$HOME/.config/i3/layout.sh
+alias ide=$HOME/.config/scripts/ide.sh
 alias bup='sudo brightnessctl set +15%' 
 alias bdown='sudo brightnessctl set 15%-' 
 
