@@ -374,7 +374,6 @@ local on_attach = function(_, bufnr)
   end, '[W]orkspace [L]ist Folders')
 
   nmap("<leader>ft", vim.lsp.buf.format, '[F]orma[T]')
-
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
@@ -445,6 +444,28 @@ mason_lspconfig.setup_handlers {
     }
   end,
 }
+
+local function organize_imports()
+  local params = {
+    command = "_typescript.organizeImports",
+    arguments = {vim.api.nvim_buf_get_name(0)},
+    title = ""
+  }
+  vim.lsp.buf.execute_command(params)
+end
+
+
+require('lspconfig')['tsserver'].setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  commands = {
+    OrganizeImports = {
+      organize_imports,
+      description = "Organize Imports"
+    }
+  }
+}
+
 
 -- Turn on lsp status information
 require('fidget').setup()
