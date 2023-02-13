@@ -1,6 +1,12 @@
 [legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
-audible-bell=false
-font='Noto Mono 14'
+bold-is-bright=true
+font='Fira Mono 12'
 scrollbar-policy='never'
 use-system-font=false
+use-theme-transparency=true
+use-transparent-background=true
+background-transparency-percent=48
 visible-name='gabriel'
+audible-bell=false
+use-theme-colors=true
+headerbar=false
