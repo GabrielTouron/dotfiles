@@ -417,6 +417,7 @@ local on_attach = function(_, bufnr)
   end, '[W]orkspace [L]ist Folders')
 
   nmap("<leader>ft", vim.lsp.buf.format, '[F]orma[T]')
+
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
@@ -438,10 +439,14 @@ local servers = {
     -- robotframework_ls = {},
     ansiblels = {},
     astro = {},
-    eslint = {},
+    eslint = {
+        codeActionOnSave = {
+            enable = true,
+            mode = "all",
+        },
+    },
     graphql = {},
     html = {},
-    tailwindcss = {},
     terraformls = {},
     tflint = {},
     yamlls = {},
@@ -489,26 +494,40 @@ mason_lspconfig.setup_handlers {
     end,
 }
 
-local function organize_imports()
-  local params = {
-      command = "_typescript.organizeImports",
-      arguments = { vim.api.nvim_buf_get_name(0) },
-      title = ""
-  }
-  vim.lsp.buf.execute_command(params)
-end
+-- local function organize_imports()
+--   local params = {
+--       command = "_typescript.organizeImports",
+--       arguments = { vim.api.nvim_buf_get_name(0) },
+--       title = ""
+--   }
+--   vim.lsp.buf.execute_command(params)
+-- end
 
 require('lspconfig')['tsserver'].setup {
-    on_attach = on_attach,
+    on_attach = function()
+      vim.keymap.set("n", "<leader>fo", "<cmd>OrganizeImports<CR>", { noremap = true, silent = true })
+    end,
     capabilities = capabilities,
-    commands = {
-        OrganizeImports = {
-            organize_imports,
-            description = "Organize Imports"
-        }
-    }
+    -- commands = {
+    --     OrganizeImports = {
+    --         organize_imports,
+    --         description = "Organize Imports"
+    --     },
+    -- }
 }
 
+require('lspconfig')['eslint'].setup {
+    flags = { debounce_text_changes = 500 },
+    on_attach = function(bufnr)
+      vim.keymap.set("n", "<leader>fl", "<cmd>EslintFixAll<CR>", { noremap = true, silent = true })
+      -- BufWritePre
+      vim.nvim.nvim_create_autocmd("BufWritePre", {
+          buffer = bufnr,
+          command = "EslintFixAll",
+      })
+    end,
+    capabilities = capabilities,
+}
 
 -- Turn on lsp status information
 require('fidget').setup()
