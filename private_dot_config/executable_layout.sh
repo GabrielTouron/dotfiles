@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# I want to open discord but in background, and I want to open mattermost-desktop in background too. I want to open google-chrome-stable in background too, but I want to open all profil in chrome config.
-
-
-
 discord &
 mattermost-desktop &
 
