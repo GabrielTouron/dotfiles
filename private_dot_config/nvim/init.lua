@@ -39,7 +39,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',          opts = {} },
 
   {
     -- Highlight, edit, and navigate code
@@ -56,7 +56,29 @@ require('lazy').setup({
 
   'lewis6991/gitsigns.nvim',
 
-  'folke/tokyonight.nvim',               -- An other theme
+  {
+    'folke/tokyonight.nvim',
+    priority = 1000,
+    config = function()
+      require('tokyonight').setup({
+        style = "night",
+        styles = {
+          comments = "italic",
+          keywords = "italic",
+          floats = "transparent",
+          sidebars = "transparent",
+        },
+        on_highlights = function(hl)
+          hl.CursorLineNr = { fg = "#FFD700" }
+        end,
+        terminal_colors = true,
+        transparent = true,
+      })
+      vim.cmd.colorscheme 'tokyonight'
+    end,
+  },
+
+  -- An other theme
   'nvim-lualine/lualine.nvim',           -- Fancier statusline
   'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines ???
   'numToStr/Comment.nvim',               -- "gc" to comment visual regions/lines
@@ -81,27 +103,6 @@ require('lazy').setup({
   -- Editor configuration
   'gpanders/editorconfig.nvim'
 }, {})
-
--- When we are bootstrapping a configuration, it doesn't
--- make sense to execute the rest of the init.lua.
---
--- You'll need to restart nvim, and then it will work.
-if is_bootstrap then
-  print '=================================='
-  print '    Plugins are being installed'
-  print '    Wait until Packer completes,'
-  print '       then restart nvim'
-  print '=================================='
-  return
-end
-
--- Automatically source and re-compile packer whenever you save this init.lua
-local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
-vim.api.nvim_create_autocmd('BufWritePost', {
-  command = 'source <afile> | silent! LspStop | silent! LspStart | PackerCompile',
-  group = packer_group,
-  pattern = vim.fn.expand '$MYVIMRC',
-})
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -146,8 +147,6 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
--- Set colorscheme
-
 vim.o.termguicolors = true
 
 vim.o.cursorline = true
@@ -163,23 +162,6 @@ vim.opt.hlsearch = false
 
 -- Cursor will never be at the bottom of the window but 8 lines before
 vim.opt.scrolloff = 8
-
-require("tokyonight").setup({
-  style = "night",
-  styles = {
-    comments = "italic",
-    keywords = "italic",
-  },
-  on_highlights = function(hl)
-    hl.CursorLineNr = { fg = "#FFD700" }
-  end,
-  transparent = true,
-})
-
-vim.cmd [[colorscheme tokyonight]]
-
--- vim.cmd [[colorscheme onedark]]
--- vim.cmd [[colorscheme tokyonight]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -318,9 +300,12 @@ vim.keymap.set('n', '<leader>cb', require('telescope.builtin').git_bcommits, { d
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'typescript', 'help', 'vim' },
+  ensure_installed = { 'typescript', 'help', 'vim', 'lua', 'tsx' },
+
+  auto_install = false,
 
   highlight = { enable = true },
+  indent = { enable = true },
   incremental_selection = {
     enable = true,
     keymaps = {
