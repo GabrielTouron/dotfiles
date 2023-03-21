@@ -79,10 +79,7 @@ require('lazy').setup({
   'github/copilot.vim',
 
   -- Editor configuration
-  'gpanders/editorconfig.nvim',
-
-  { import = 'custom.plugins' },
-
+  'gpanders/editorconfig.nvim'
 }, {})
 
 -- When we are bootstrapping a configuration, it doesn't
