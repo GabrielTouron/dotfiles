@@ -15,7 +15,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -40,6 +39,9 @@ require('lazy').setup({
 
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim',          opts = {} },
+
+  {"ellisonleao/glow.nvim", config = true, cmd = "Glow"},
+
 
   {
     -- Highlight, edit, and navigate code
@@ -103,6 +105,16 @@ require('lazy').setup({
   -- Editor configuration
   'gpanders/editorconfig.nvim'
 }, {})
+
+-- Set ruler at 80 characters
+vim.opt.ruler = true
+vim.opt.colorcolumn = '80'
+-- Change color of ruler
+vim.cmd [[highlight ColorColumn ctermbg=0 guibg=lightgrey]]
+-- Break lines at 80 characters
+vim.opt.textwidth = 80
+-- Format text on save
+vim.opt.formatoptions = vim.opt.formatoptions + 'j'
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -435,11 +447,11 @@ local servers = {
       mode = "all",
     },
   },
+  gopls = {},
   graphql = {},
   html = {},
   terraformls = {},
   tflint = {},
-  yamlls = {},
   bashls = {},
   prismals = {},
   lua_ls = {
@@ -493,18 +505,12 @@ mason_lspconfig.setup_handlers {
 --   vim.lsp.buf.execute_command(params)
 -- end
 
-require('lspconfig')['tsserver'].setup {
-  on_attach = function()
-    vim.keymap.set("n", "<leader>fo", "<cmd>OrganizeImports<CR>", { noremap = true, silent = true })
-  end,
-  capabilities = capabilities,
-  -- commands = {
-  --     OrganizeImports = {
-  --         organize_imports,
-  --         description = "Organize Imports"
-  --     },
-  -- }
-}
+-- require('lspconfig')['tsserver'].setup {
+--   on_attach = function()
+--   end,
+--   capabilities = capabilities,
+--   -- }
+-- }
 
 require('lspconfig')['eslint'].setup {
   flags = { debounce_text_changes = 500 },
