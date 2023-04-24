@@ -44,12 +44,11 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias vim='nvim'
-alias start=$HOME/.config/layout.sh
-alias ide=$HOME/.config/scripts/ide.sh
 
 # add Pulumi to the PATH
 export PATH=$PATH:$HOME/.pulumi/bin
 export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:$HOME/.config/scripts
 export PROMPT_COMMAND="history -a; history -n"
 export EDITOR="nvim"	
 
