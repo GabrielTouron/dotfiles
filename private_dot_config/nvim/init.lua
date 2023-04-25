@@ -115,33 +115,26 @@ vim.cmd [[highlight ColorColumn ctermbg=0 guibg=lightgrey]]
 vim.opt.textwidth = 80
 -- Format text on save
 vim.opt.formatoptions = vim.opt.formatoptions + 'j'
-
+-- Set clipboard to system clipboard
+vim.opt.clipboard = 'unnamedplus'
 -- [[ Setting options ]]
 -- See `:help vim.o`
-
 -- Set highlight on search
 vim.o.hlsearch = false
-
 -- Make line numbers default
 vim.wo.number = true
-
 -- Enable mouse mode
 vim.o.mouse = 'a'
-
 -- Enable break indent
 vim.o.breakindent = true
-
 -- Save undo history
 vim.o.undofile = true
-
 -- Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
 vim.o.smartcase = true
-
 -- Decrease update time
 vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
-
 vim.opt.relativenumber = true
 
 -- Moves lines and relesect in visual mode
