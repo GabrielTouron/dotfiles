@@ -47,6 +47,7 @@ alias vim='nvim'
 
 # add Pulumi to the PATH
 export PATH=$PATH:$HOME/.pulumi/bin
+export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:$HOME/.config/scripts
 export PROMPT_COMMAND="history -a; history -n"
