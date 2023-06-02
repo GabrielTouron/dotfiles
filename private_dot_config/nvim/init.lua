@@ -15,6 +15,18 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
+
+  {
+    "jay-babu/mason-null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "williamboman/mason.nvim",
+      "jose-elias-alvarez/null-ls.nvim",
+    },
+    config = function()
+      require("plugins.null-ls") -- require your null-ls config here (example below)
+    end,
+  },
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -37,20 +49,19 @@ require('lazy').setup({
     dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
   },
 
-  -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',          opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
 
-  {"ellisonleao/glow.nvim", config = true, cmd = "Glow"},
+  { "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
 
 
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
-    config = function()
-      pcall(require('nvim-treesitter.install').update { with_sync = true })
-    end,
+    build = ':TSUpdate',
   },
+
+  require('plugins.autoformat'),
 
   -- Git related plugins
   'tpope/vim-fugitive', -- ???
@@ -229,6 +240,14 @@ require('gitsigns').setup {
     delete = { text = '_' },
     topdelete = { text = '‾' },
     changedelete = { text = '~' },
+  },
+  current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
+  current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`false
+  current_line_blame_opts = {
+    virt_text = true,
+    virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+    delay = 200,
+    ignore_whitespace = false,
   },
 
   on_attach = function(bufnr)
@@ -433,7 +452,7 @@ local servers = {
   marksman = {},
   -- robotframework_ls = {},
   ansiblels = {},
-  astro = {},
+  -- astro = {},
   eslint = {
     codeActionOnSave = {
       enable = true,
@@ -460,6 +479,7 @@ local servers = {
       },
     },
   },
+  volar = {},
 }
 
 -- Setup neovim lua configuration
