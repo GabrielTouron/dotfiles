@@ -1,0 +1,9 @@
+#!/bin/bash
+
+tmux kill-session -t notes;
+tmux new -d -s notes;
+tmux send-keys -t notes "cd ~/Documents/notes" Enter;
+tmux send-keys -t notes "nvim ." Enter;
+tmux attach -t notes;
+
+
