@@ -1,0 +1,14 @@
+#!/bin/bash
+
+title=$1
+day=$(date +"%d")
+year=$(date +"%Y")
+time=$(date +"%H:%M")
+time2=$(date +"%H%M")
+
+mkdir -p ~/Documents/notes
+
+# Ex: 
+# # The 12th of May 2020 at 12:00 : My first note
+# ~/Documents/notes/My first note_12_May_2020_1200.md
+echo "# The $day $month $year at $time : $title" > ~/Documents/notes/${title}_${day}_${month}_${year}_${time2}.md
