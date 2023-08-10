@@ -17,19 +17,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  {
-    "jay-babu/mason-null-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      "williamboman/mason.nvim",
-      "jose-elias-alvarez/null-ls.nvim",
-    },
-    config = function()
-      require("plugins.null-ls") -- require your null-ls config here (example below)
-    end,
-  },
   { 'folke/which-key.nvim',  opts = {} },
-  { "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
+  { 'ellisonleao/glow.nvim', config = true, cmd = 'Glow' },
+
   -- Git related plugins
   'tpope/vim-fugitive',                  -- ???
   'tpope/vim-rhubarb',                   -- ??

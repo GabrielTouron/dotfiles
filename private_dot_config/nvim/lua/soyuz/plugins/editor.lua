@@ -17,6 +17,11 @@ return {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
     },
+    config = function()
+      vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+      vim.keymap.set('n', '<leader>nt', ':NeoTreeReveal<CR>', { desc = '[N]vim [T]ree' })
+      vim.keymap.set('n', '<leader>nc', ':NeoTreeClose<CR>', { desc = '[N]vim [T]ree [C]lose' })
+    end
   },
   -- [[ Configure Telescope ]]
   -- See `:help telescope` and `:help telescope.setup()`
@@ -25,6 +30,7 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
+    file_ignore_patters = { "node_modules", ".git"},
     defaults = {
       mappings = {
         i = {
