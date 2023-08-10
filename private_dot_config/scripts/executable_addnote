@@ -1,6 +1,14 @@
 #!/bin/bash
 
 title=$1
+
+## if no title is given, open the notes folder
+if [ -z "$title" ]
+then
+    cdnotes
+    exit 0
+fi
+
 day=$(date +"%d")
 month=$(date +"%b")
 year=$(date +"%Y")
