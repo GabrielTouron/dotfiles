@@ -4,7 +4,7 @@ return {
     required = {
       "kyazdani42/nvim-web-devicons",
     },
-    config = function ()
+    config = function()
       require("lualine").setup({
         options = {
           icons_enabled = true,
@@ -22,12 +22,20 @@ return {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
     },
+    opts = {
+      filesystem = {
+        hijack_netrw_behavior = "disabled",
+      }
+    },
     config = function()
       vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
       vim.keymap.set('n', '<leader>nt', ':NeoTreeReveal<CR>', { desc = '[N]vim [T]ree' })
       vim.keymap.set('n', '<leader>nc', ':NeoTreeClose<CR>', { desc = '[N]vim [T]ree [C]lose' })
       require("neo-tree").setup({
         close_if_last_window = true,
+        filesystem = {
+          hijack_netrw_behavior = "disabled",
+        },
       })
     end
   },
