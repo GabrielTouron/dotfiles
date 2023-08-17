@@ -1,3 +1,4 @@
+-- https://github.com/folke/tokyonight.nvim
 return {
   {
     'folke/tokyonight.nvim',
@@ -5,6 +6,7 @@ return {
     config = function()
       require('tokyonight').setup({
         style = "night",
+        light_style = "day",
         styles = {
           comments = "italic",
           keywords = "italic",

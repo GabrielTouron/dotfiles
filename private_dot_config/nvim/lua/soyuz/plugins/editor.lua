@@ -1,8 +1,6 @@
 return {
-  -- Set lualine as statusline
-  -- See `:help lualine.txt`
   {
-    'nvim-lualine/lualine.nvim', -- Fancier statusline
+    'nvim-lualine/lualine.nvim',
     options = {
       theme = 'tokyonight',
       section_separators = '',
@@ -23,14 +21,18 @@ return {
       vim.keymap.set('n', '<leader>nc', ':NeoTreeClose<CR>', { desc = '[N]vim [T]ree [C]lose' })
     end
   },
-  -- [[ Configure Telescope ]]
-  -- See `:help telescope` and `:help telescope.setup()`
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
-    file_ignore_patters = { "node_modules", ".git"},
+    file_ignore_patters = {
+      "node_modules",
+      ".git",
+      "*lock.json",
+      "yarn.lock",
+      "package-lock.json",
+    },
     defaults = {
       mappings = {
         i = {
@@ -58,8 +60,6 @@ return {
       return vim.fn.executable 'make' == 1
     end,
   },
-  -- Gitsigns
-  -- See `:help gitsigns.txt`
   {
     'lewis6991/gitsigns.nvim',
     opts = {
@@ -78,7 +78,6 @@ return {
         delay = 200,
         ignore_whitespace = false,
       },
-
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
         local function map(mode, l, r, opts)
@@ -86,14 +85,11 @@ return {
           opts.buffer = bufnr
           vim.keymap.set(mode, l, r, opts)
         end
-
-        -- Navigation
         map('n', ']c', function()
           if vim.wo.diff then return ']c' end
           vim.schedule(function() gs.next_hunk() end)
           return '<Ignore>'
         end, { expr = true })
-
         map('n', '[c', function()
           if vim.wo.diff then return '[c' end
           vim.schedule(function() gs.prev_hunk() end)

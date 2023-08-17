@@ -1,7 +1,5 @@
 require('soyuz.config')
 
--- Install package manager
---    `:help lazy.nvim.txt` for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -23,9 +21,7 @@ require('lazy').setup({
   -- Git related plugins
   'tpope/vim-fugitive',                  -- ???
   'tpope/vim-rhubarb',                   -- ??
-
   'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines ???
-  'numToStr/Comment.nvim',               -- "gc" to comment visual regions/lines
   'tpope/vim-sleuth',                    -- Detect tabstop and shiftwidth automatically ???
   'github/copilot.vim',                  -- AI code helper
   'gpanders/editorconfig.nvim',          -- Editor configuration
@@ -34,16 +30,12 @@ require('lazy').setup({
   { import = 'soyuz.lsp' }
 })
 
-require('Comment').setup() -- Enable Comment.nvim
-require('fidget').setup()  -- Turn on lsp status information
 require('neodev').setup()  -- Turn on neodev
 require('mason').setup()   -- Setup mason so it can manage external tooling
 
 vim.g.copilot_no_tab_map = true
 vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 
--- Enable `lukas-reineke/indent-blankline.nvim`
--- See `:help indent_blankline.txt`
 require('indent_blankline').setup {
   char = '┊',
   show_trailing_blankline_indent = false,

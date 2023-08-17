@@ -2,7 +2,14 @@ return {
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
-    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+    version = false,
+    dependencies = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip'
+    },
     opts = function()
       local cmp = require('cmp')
       local luasnip = require('luasnip')
@@ -61,6 +68,16 @@ return {
         },
       }
     end
-
   },
+  {
+    'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
+    dependencies = {
+      'JoosepAlviste/nvim-ts-context-commentstring',
+    },
+    opts = function()
+      require('Comment').setup({
+        pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook() })
+    end,
+    lazy = false,
+  }
 }

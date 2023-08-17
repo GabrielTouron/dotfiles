@@ -1,6 +1,6 @@
 vim.keymap.set({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 
-vim.cmd [[highlight ColorColumn ctermbg=0 guibg=lightgrey]]
+-- vim.cmd [[highlight ColorColumn ctermbg=0 guibg=lightgrey]]
 
 -- Moves lines and relesect in visual mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv") -- down
