@@ -10,7 +10,7 @@ add_newline = true
 [battery]
 disabled = true
 
-[[battery.display]]
+[battery.display]
 threshold = 10
 
 [cmd_duration]
@@ -170,7 +170,7 @@ symbol = "pl "
 symbol = "php "
 
 [pulumi]
-symbol = "pulumi "
+format = '[🛥 ($version )$stack]($style) '
 
 [purescript]
 symbol = "purs "
