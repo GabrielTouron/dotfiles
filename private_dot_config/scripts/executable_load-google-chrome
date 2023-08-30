@@ -1,8 +1,8 @@
 #!/bin/bash
-google-chrome-stable --profile-directory="Default" &
+google-chrome-stable --profile-directory="Default" > /dev/null 2>&1 &
 
 # Load all profil in chrome config
 for i in ~/.config/google-chrome/'Profile '*; do
 	profil_name=$( echo "$i" | sed 's/^[^P]*//g')
-	google-chrome-stable --profile-directory="${profil_name}" &
+	google-chrome-stable --profile-directory="${profil_name}" > /dev/null 2>&1 &
 done

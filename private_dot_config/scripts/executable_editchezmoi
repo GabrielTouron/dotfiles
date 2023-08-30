@@ -1,0 +1,17 @@
+#!/bin/bash
+
+
+cd ~/.local/share/chezmoi
+
+tmux_session_name="chezmoi"
+
+if tmux has-session -t "$tmux_session_name"
+  then
+    tmux attach-session -t "$tmux_session_name"
+  else
+    tmux new-session -d -s "$tmux_session_name"
+    tmux new-window -t "$tmux_session_name" -n "terminal" "chezmoi cd" 
+    tmux new-window -t "$tmux_session_name" -n "editor" "chezmoi edit"
+    tmux kill-window -t "$tmux_session_name:0"
+    tmux attach-session -t "$tmux_session_name"
+fi

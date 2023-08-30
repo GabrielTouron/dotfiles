@@ -3,7 +3,7 @@
 tmux kill-session -t notes;
 tmux new -d -s notes;
 tmux send-keys -t notes "cd ~/Documents/notes" Enter;
-tmux send-keys -t notes "nvim ." Enter;
+tmux send-keys -t notes 'nvim "$(ls -t | head -n 1)"' Enter;
 tmux attach -t notes;
 
 
